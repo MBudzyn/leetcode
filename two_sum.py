@@ -11,6 +11,11 @@
 # SPACE COMPLEXITY
 # the space complexity is O(1) because we only need to use two pointers to solve this problem
 
+def find_start_pointers(numbers: list[int], target: int) -> tuple[int, int]:
+    for i in range(1,len(numbers)):
+        if numbers[i] + numbers[i-1] >= target:
+            return i-1, i
+
 
 
 import typeguard
@@ -18,4 +23,21 @@ import typeguard
 @typeguard.typechecked
 class Solution:
     def twoSum(self, numbers: list[int], target: int) -> list[int]:
-        pass
+        left, right = find_start_pointers(numbers, target)
+        condition = True
+        while condition:
+            if left < 0 or right >= len(numbers):
+                condition = False
+                error = "No solution found"
+                raise ValueError(error)
+            if numbers[left] + numbers[right] == target:
+                return [left+1, right+1]
+            elif numbers[left] + numbers[right] > target:
+                left -= 1
+            else:
+                right += 1
+
+
+task = Solution()
+print(task.twoSum([2,7,11,15], 9)) # [1,2]
+print(task.twoSum([2,3,4], 6)) # [1,3]
