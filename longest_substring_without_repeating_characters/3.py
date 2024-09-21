@@ -9,7 +9,24 @@
 # algorithm is O(n) SPACE COMPLEXITY the space complexity is O(n) because we are using the hash table to store the
 # characters from the string with their indexes
 
+import typeguard
+@ typeguard.typechecked
+class Solution:
+
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_index_map = {}
+        max_length = 0
+        left = 0
+        for right in range(len(s)):
+            if s[right] in char_index_map and char_index_map[s[right]] >= left:
+                left = char_index_map[s[right]] + 1
+            char_index_map[s[right]] = right
+            max_length = max(max_length, right - left + 1)
+
+        return max_length
 
 
 
-
+s = Solution()
+print(s.lengthOfLongestSubstring("abcabcbb"))  # 3
+print(s.lengthOfLongestSubstring("bbbbb"))  # 1
