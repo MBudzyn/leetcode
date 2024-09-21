@@ -17,7 +17,6 @@ def find_start_pointers(numbers: list[int], target: int) -> tuple[int, int]:
             return i-1, i
 
 
-
 import typeguard
 
 @typeguard.typechecked
