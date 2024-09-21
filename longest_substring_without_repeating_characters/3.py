@@ -21,7 +21,7 @@ class Solution:
             if s[right] in char_index_map and char_index_map[s[right]] >= left:
                 left = char_index_map[s[right]] + 1
             char_index_map[s[right]] = right
-            max_length = max(max_length, right - left + 1)gi
+            max_length = max(max_length, right - left + 1)
 
         return max_length
 
