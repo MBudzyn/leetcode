@@ -11,3 +11,24 @@
 # the space complexity is O(1) because we only need to use two pointers to solve this problem
 # and constant number of variables
 
+
+
+class Solution:
+    def minSubArrayLen(self, target: int, nums: list[int]) -> int:
+        sum = 0
+        left = 0
+        right = 0
+        min_size = float("inf")
+        while right < len(nums):
+            sum += nums[right]
+            right += 1
+            if sum >= target:
+                while sum - nums[left] >= target:
+                    sum -= nums[left]
+                    left +=1
+                if min_size > right - left:
+                    min_size = right - left
+        if sum < target:
+            return 0
+        else:
+            return min_size
