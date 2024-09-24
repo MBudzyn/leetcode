@@ -7,3 +7,17 @@
 # The time complexity is O(nlogn) because we need to sort the array
 # SPACE COMPLEXITY
 # The space complexity is O(1) because we only need to use constant number of variables
+
+class Solution:
+    def hIndex(self, citations: list[int]) -> int:
+        citations.sort()
+        max_h = 0
+        for i in range(len(citations)):
+            cd = 0
+            if len(citations) - i >= citations[i]:
+                cd = citations[i]
+            elif citations[i] > len(citations) - i:
+                cd = len(citations) - i
+
+            max_h = max(max_h, cd)
+        return max_h
