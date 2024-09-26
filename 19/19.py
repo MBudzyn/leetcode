@@ -8,4 +8,33 @@
 # SPACE COMPLEXITY
 # O(1) because we don't use any extra space
 
+# Definition for singly-linked list.
+
+from typing import Optional
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        original_head = head
+        first = head
+
+        for i in range(n):
+            head = head.next
+        second = head
+
+        if not second:
+            return first.next
+
+        while second.next:
+            first = first.next
+            second = second.next
+        first.next = first.next.next
+
+        return original_head
+
+
+
+
 
