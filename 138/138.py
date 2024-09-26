@@ -11,7 +11,7 @@
 # of the copied list. Also, we create a copy of the list.
 
 # IDEA2
-# We need to modify the solution a bit, becouse values can be not unique. So, we need to store the indexes
+# We need to modify the solution a bit, because values can be not unique. So, we need to store the indexes
 # of appearance instead of values.
 
 
