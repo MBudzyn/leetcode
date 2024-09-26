@@ -14,6 +14,19 @@
 # We need to modify the solution a bit, because values can be not unique. So, we need to store the indexes
 # of appearance instead of values.
 
+# IDEA3
+# We can solve this problem another simple way, instead of using indexes, and instead of single values,
+# we can store table of nodes for each value. So, we will have a hash table that will store the values
+# and the table of nodes that have that value. because of the order of appearance, we can easily assign
+# the random pointers to the copied list. by taking the first node from the table of nodes that have the
+# same value as the random node, and assign it to the random pointer of the copied list.
+
+# IDEA4
+# we will store not values of nodes in the hash table, but the nodes themselves. So, we will have a hash table
+# that will store the nodes of the original list, and the nodes of the copied list.
+
+
+
 
 from typing import Optional
 
@@ -33,21 +46,26 @@ class Node:
 
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        dct = {}
-        org_head = head
-        res_head = Node(head.val) if head else None
-        copy_head = res_head
-        while head:
-            copy_head.next = Node(head.next.val) if head.next else None
-            dct[copy_head.val] = copy_head
-            head = head.next
-            copy_head = copy_head.next
+        if not head:
+            return None
+        old_to_new = {}
 
-        while org_head:
-            dct[org_head.val].random = dct[org_head.random.val] if org_head.random else None
-            org_head = org_head.next
+        current = head
+        while current:
+            old_to_new[current] = Node(current.val)
+            current = current.next
 
-        return res_head
+
+        current = head
+        while current:
+            if current.next:
+                old_to_new[current].next = old_to_new[current.next]
+            if current.random:
+                old_to_new[current].random = old_to_new[current.random]
+            current = current.next
+
+
+        return old_to_new[head]
 
 
 s = Solution()
