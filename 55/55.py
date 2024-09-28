@@ -9,3 +9,20 @@
 # O(N) because we iterate through the array
 # SPACE COMPLEXITY
 
+from typing import List
+
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        if len(nums) == 1:
+            return True
+
+        max_j = nums[0]
+        if max_j == 0:
+            return False
+
+        for i in range(1, len(nums)):
+            max_j = max(max_j - 1, nums[i])
+            if max_j == 0 and i != len(nums) - 1:
+                return False
+        return True
