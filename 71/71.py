@@ -8,4 +8,16 @@
 # SPACE COMPLEXITY
 # O(N) because we use stack to store the elements
 
-
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        tmp = path.split("/")
+        tmp = [x for x in tmp if x]
+        tmp = [x for x in tmp if x != "."]
+        res = []
+        for i in tmp:
+            if i == "..":
+                if res:
+                    res.pop()
+            else:
+                res.append(i)
+        return "/" + "/".join(res)
