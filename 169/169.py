@@ -9,4 +9,19 @@
 # SPACE COMPLEXITY
 # O(1), we are using only constant space
 
+from typing import List
 
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        cd = 0
+        ct = 0
+        for i in range(len(nums)):
+            if ct == 0:
+                cd = nums[i]
+                ct += 1
+            elif nums[i] == cd:
+                ct += 1
+            else:
+                ct -= 1
+        return cd
