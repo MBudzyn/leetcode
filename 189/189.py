@@ -6,3 +6,10 @@
 # SPACE COMPLEXITY
 # The space complexity is O(1) as we are not using any extra space
 
+from typing import List
+
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        k = k % len(nums)
+        nums[:] = nums[-k:] + nums[:-k]
