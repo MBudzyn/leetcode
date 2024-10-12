@@ -24,5 +24,6 @@ class Solution:
                 nums[to_insert] = nums[i]
                 to_insert += 1
                 ct += 1
+                
 
         return to_insert if to_insert != -1 else len(nums)
