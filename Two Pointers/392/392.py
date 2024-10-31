@@ -9,3 +9,12 @@
 # SPACE COMPLEXITY
 # O(1) because we only use constant number of variables
 
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        ind = 0
+        while s and ind < len(t):
+            if s[0] == t[ind]:
+                s = s[1:]
+            ind += 1
+        return not s
+
